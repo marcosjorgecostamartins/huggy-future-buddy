@@ -21,19 +21,35 @@ import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+    <div className="blueprint flex min-h-screen items-center justify-center bg-graphite px-6 text-cream">
+      <div className="max-w-lg text-center">
+        <img
+          src={logoWhite.url}
+          alt="Assessmoney"
+          width={160}
+          height={48}
+          className="mx-auto h-12 w-auto"
+        />
+        <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.24em] text-emerald-action">
+          Erro 404
         </p>
-        <div className="mt-6">
+        <h1 className="mt-4 font-display text-4xl text-cream">Página não encontrada</h1>
+        <p className="mt-4 text-[15px] leading-relaxed text-institutional-soft">
+          O endereço acessado não existe ou foi movido. Retorne à página inicial da Assessmoney ou
+          fale com um de nossos especialistas.
+        </p>
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="bg-emerald-action px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-cream transition-colors hover:bg-forest"
           >
-            Go home
+            Voltar ao início
+          </Link>
+          <Link
+            to="/contato"
+            className="border border-cream/25 px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-cream transition-colors hover:border-emerald-action hover:text-emerald-action"
+          >
+            Falar com especialista
           </Link>
         </div>
       </div>
@@ -49,35 +65,41 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
+    <div className="blueprint flex min-h-screen items-center justify-center bg-graphite px-6 text-cream">
+      <div className="max-w-lg text-center">
+        <img
+          src={logoWhite.url}
+          alt="Assessmoney"
+          width={160}
+          height={48}
+          className="mx-auto h-12 w-auto"
+        />
+        <h1 className="mt-10 font-display text-3xl text-cream">Não foi possível carregar esta página</h1>
+        <p className="mt-4 text-[15px] leading-relaxed text-institutional-soft">
+          Ocorreu uma falha inesperada. Tente novamente ou retorne à página inicial da Assessmoney.
         </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="bg-emerald-action px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-cream transition-colors hover:bg-forest"
           >
-            Try again
+            Tentar novamente
           </button>
           <a
             href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+            className="border border-cream/25 px-7 py-3.5 text-[11px] uppercase tracking-[0.18em] text-cream transition-colors hover:border-emerald-action hover:text-emerald-action"
           >
-            Go home
+            Voltar ao início
           </a>
         </div>
       </div>
     </div>
   );
 }
+
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
