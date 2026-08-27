@@ -14,6 +14,7 @@ import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as QuemSomosMissaoVisaoValoresRouteImport } from './routes/quem-somos.missao-visao-valores'
 import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
+import { Route as SolucoesSlugRouteImport } from './routes/solucoes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -41,12 +42,18 @@ const SolucoesIndexRoute = SolucoesIndexRouteImport.update({
   path: '/solucoes/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SolucoesSlugRoute = SolucoesSlugRouteImport.update({
+  id: '/solucoes/$slug',
+  path: '/solucoes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
+  '/solucoes/$slug': typeof SolucoesSlugRoute
   '/solucoes/': typeof SolucoesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
+  '/solucoes/$slug': typeof SolucoesSlugRoute
   '/solucoes': typeof SolucoesIndexRoute
 }
 export interface FileRoutesById {
@@ -62,6 +70,7 @@ export interface FileRoutesById {
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
+  '/solucoes/$slug': typeof SolucoesSlugRoute
   '/solucoes/': typeof SolucoesIndexRoute
 }
 export interface FileRouteTypes {
@@ -71,6 +80,7 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
+    | '/solucoes/$slug'
     | '/solucoes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -78,6 +88,7 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
+    | '/solucoes/$slug'
     | '/solucoes'
   id:
     | '__root__'
@@ -85,12 +96,14 @@ export interface FileRouteTypes {
     | '/quem-somos'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
+    | '/solucoes/$slug'
     | '/solucoes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   QuemSomosRoute: typeof QuemSomosRouteWithChildren
+  SolucoesSlugRoute: typeof SolucoesSlugRoute
   SolucoesIndexRoute: typeof SolucoesIndexRoute
 }
 
@@ -131,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SolucoesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/solucoes/$slug': {
+      id: '/solucoes/$slug'
+      path: '/solucoes/$slug'
+      fullPath: '/solucoes/$slug'
+      preLoaderRoute: typeof SolucoesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +171,7 @@ const QuemSomosRouteWithChildren = QuemSomosRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   QuemSomosRoute: QuemSomosRouteWithChildren,
+  SolucoesSlugRoute: SolucoesSlugRoute,
   SolucoesIndexRoute: SolucoesIndexRoute,
 }
 export const routeTree = rootRouteImport
