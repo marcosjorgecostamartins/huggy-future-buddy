@@ -87,7 +87,7 @@ function InsightPost() {
         </div>
       </Section>
 
-      <Section tone="muted">
+      <Section tone="light">
         <Eyebrow>Continue lendo</Eyebrow>
         <div className="mt-12 grid gap-px border border-border bg-border md:grid-cols-3">
           {related.map((p) => (
