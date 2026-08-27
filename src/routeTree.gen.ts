@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as QuemSomosMissaoVisaoValoresRouteImport } from './routes/quem-somos.missao-visao-valores'
 import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,12 @@ const QuemSomosRoute = QuemSomosRouteImport.update({
   path: '/quem-somos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuemSomosMissaoVisaoValoresRoute =
+  QuemSomosMissaoVisaoValoresRouteImport.update({
+    id: '/missao-visao-valores',
+    path: '/missao-visao-valores',
+    getParentRoute: () => QuemSomosRoute,
+  } as any)
 const QuemSomosNossaHistoriaRoute = QuemSomosNossaHistoriaRouteImport.update({
   id: '/nossa-historia',
   path: '/nossa-historia',
@@ -32,25 +39,41 @@ const QuemSomosNossaHistoriaRoute = QuemSomosNossaHistoriaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/quem-somos' | '/quem-somos/nossa-historia'
+  fullPaths:
+    | '/'
+    | '/quem-somos'
+    | '/quem-somos/missao-visao-valores'
+    | '/quem-somos/nossa-historia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/quem-somos' | '/quem-somos/nossa-historia'
-  id: '__root__' | '/' | '/quem-somos' | '/quem-somos/nossa-historia'
+  to:
+    | '/'
+    | '/quem-somos'
+    | '/quem-somos/missao-visao-valores'
+    | '/quem-somos/nossa-historia'
+  id:
+    | '__root__'
+    | '/'
+    | '/quem-somos'
+    | '/quem-somos/missao-visao-valores'
+    | '/quem-somos/nossa-historia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -74,6 +97,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuemSomosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quem-somos/missao-visao-valores': {
+      id: '/quem-somos/missao-visao-valores'
+      path: '/missao-visao-valores'
+      fullPath: '/quem-somos/missao-visao-valores'
+      preLoaderRoute: typeof QuemSomosMissaoVisaoValoresRouteImport
+      parentRoute: typeof QuemSomosRoute
+    }
     '/quem-somos/nossa-historia': {
       id: '/quem-somos/nossa-historia'
       path: '/nossa-historia'
@@ -85,10 +115,12 @@ declare module '@tanstack/react-router' {
 }
 
 interface QuemSomosRouteChildren {
+  QuemSomosMissaoVisaoValoresRoute: typeof QuemSomosMissaoVisaoValoresRoute
   QuemSomosNossaHistoriaRoute: typeof QuemSomosNossaHistoriaRoute
 }
 
 const QuemSomosRouteChildren: QuemSomosRouteChildren = {
+  QuemSomosMissaoVisaoValoresRoute: QuemSomosMissaoVisaoValoresRoute,
   QuemSomosNossaHistoriaRoute: QuemSomosNossaHistoriaRoute,
 }
 
