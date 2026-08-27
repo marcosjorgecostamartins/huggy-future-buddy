@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as LegalAssetsIndexRouteImport } from './routes/legal-assets.index'
+import { Route as LegalAssetsSlugRouteImport } from './routes/legal-assets.$slug'
 import { Route as QuemSomosMissaoVisaoValoresRouteImport } from './routes/quem-somos.missao-visao-valores'
 import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
@@ -30,6 +31,11 @@ const QuemSomosRoute = QuemSomosRouteImport.update({
 const LegalAssetsIndexRoute = LegalAssetsIndexRouteImport.update({
   id: '/legal-assets/',
   path: '/legal-assets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalAssetsSlugRoute = LegalAssetsSlugRouteImport.update({
+  id: '/legal-assets/$slug',
+  path: '/legal-assets/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuemSomosMissaoVisaoValoresRoute =
@@ -57,6 +63,7 @@ const SolucoesSlugRoute = SolucoesSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/legal-assets/$slug': typeof LegalAssetsSlugRoute
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/legal-assets/$slug': typeof LegalAssetsSlugRoute
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/legal-assets/$slug': typeof LegalAssetsSlugRoute
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/quem-somos'
+    | '/legal-assets/$slug'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/quem-somos'
+    | '/legal-assets/$slug'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/quem-somos'
+    | '/legal-assets/$slug'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
@@ -115,6 +127,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   QuemSomosRoute: typeof QuemSomosRouteWithChildren
+  LegalAssetsSlugRoute: typeof LegalAssetsSlugRoute
   SolucoesSlugRoute: typeof SolucoesSlugRoute
   LegalAssetsIndexRoute: typeof LegalAssetsIndexRoute
   SolucoesIndexRoute: typeof SolucoesIndexRoute
@@ -141,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/legal-assets'
       fullPath: '/legal-assets/'
       preLoaderRoute: typeof LegalAssetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal-assets/$slug': {
+      id: '/legal-assets/$slug'
+      path: '/legal-assets/$slug'
+      fullPath: '/legal-assets/$slug'
+      preLoaderRoute: typeof LegalAssetsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quem-somos/missao-visao-valores': {
@@ -191,6 +211,7 @@ const QuemSomosRouteWithChildren = QuemSomosRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   QuemSomosRoute: QuemSomosRouteWithChildren,
+  LegalAssetsSlugRoute: LegalAssetsSlugRoute,
   SolucoesSlugRoute: SolucoesSlugRoute,
   LegalAssetsIndexRoute: LegalAssetsIndexRoute,
   SolucoesIndexRoute: SolucoesIndexRoute,
