@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import logoWhite from "@/assets/logo-white.png.asset.json";
 import { BrandLoader } from "@/components/site/BrandLoader";
 import { Cursor } from "@/components/site/Cursor";
 import { Header } from "@/components/site/Header";
