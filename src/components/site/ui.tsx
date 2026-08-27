@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 type CtaProps = {
   to: string;
-  params?: Record<string, string>;
+  params?: Record<string, string> | undefined;
   children: ReactNode;
   variant?: "solid" | "outline" | "ghost";
   className?: string;
