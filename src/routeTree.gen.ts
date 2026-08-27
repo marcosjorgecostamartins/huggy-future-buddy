@@ -14,6 +14,7 @@ import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as LegalAssetsIndexRouteImport } from './routes/legal-assets.index'
 import { Route as LegalAssetsSlugRouteImport } from './routes/legal-assets.$slug'
 import { Route as MaIndexRouteImport } from './routes/ma.index'
+import { Route as MaSlugRouteImport } from './routes/ma.$slug'
 import { Route as QuemSomosMissaoVisaoValoresRouteImport } from './routes/quem-somos.missao-visao-valores'
 import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
@@ -44,6 +45,11 @@ const MaIndexRoute = MaIndexRouteImport.update({
   path: '/ma/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MaSlugRoute = MaSlugRouteImport.update({
+  id: '/ma/$slug',
+  path: '/ma/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuemSomosMissaoVisaoValoresRoute =
   QuemSomosMissaoVisaoValoresRouteImport.update({
     id: '/missao-visao-valores',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/legal-assets/$slug': typeof LegalAssetsSlugRoute
+  '/ma/$slug': typeof MaSlugRoute
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/legal-assets/$slug': typeof LegalAssetsSlugRoute
+  '/ma/$slug': typeof MaSlugRoute
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/legal-assets/$slug': typeof LegalAssetsSlugRoute
+  '/ma/$slug': typeof MaSlugRoute
   '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/'
     | '/quem-somos'
     | '/legal-assets/$slug'
+    | '/ma/$slug'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/quem-somos'
     | '/legal-assets/$slug'
+    | '/ma/$slug'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/'
     | '/quem-somos'
     | '/legal-assets/$slug'
+    | '/ma/$slug'
     | '/quem-somos/missao-visao-valores'
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   QuemSomosRoute: typeof QuemSomosRouteWithChildren
   LegalAssetsSlugRoute: typeof LegalAssetsSlugRoute
+  MaSlugRoute: typeof MaSlugRoute
   SolucoesSlugRoute: typeof SolucoesSlugRoute
   LegalAssetsIndexRoute: typeof LegalAssetsIndexRoute
   MaIndexRoute: typeof MaIndexRoute
@@ -181,6 +194,13 @@ declare module '@tanstack/react-router' {
       path: '/ma'
       fullPath: '/ma/'
       preLoaderRoute: typeof MaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ma/$slug': {
+      id: '/ma/$slug'
+      path: '/ma/$slug'
+      fullPath: '/ma/$slug'
+      preLoaderRoute: typeof MaSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quem-somos/missao-visao-valores': {
@@ -232,6 +252,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   QuemSomosRoute: QuemSomosRouteWithChildren,
   LegalAssetsSlugRoute: LegalAssetsSlugRoute,
+  MaSlugRoute: MaSlugRoute,
   SolucoesSlugRoute: SolucoesSlugRoute,
   LegalAssetsIndexRoute: LegalAssetsIndexRoute,
   MaIndexRoute: MaIndexRoute,
