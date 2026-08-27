@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,39 @@ const QuemSomosRoute = QuemSomosRouteImport.update({
   path: '/quem-somos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuemSomosNossaHistoriaRoute = QuemSomosNossaHistoriaRouteImport.update({
+  id: '/nossa-historia',
+  path: '/nossa-historia',
+  getParentRoute: () => QuemSomosRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/quem-somos': typeof QuemSomosRoute
+  '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/quem-somos': typeof QuemSomosRoute
+  '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/quem-somos': typeof QuemSomosRoute
+  '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/quem-somos'
+  fullPaths: '/' | '/quem-somos' | '/quem-somos/nossa-historia'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/quem-somos'
-  id: '__root__' | '/' | '/quem-somos'
+  to: '/' | '/quem-somos' | '/quem-somos/nossa-historia'
+  id: '__root__' | '/' | '/quem-somos' | '/quem-somos/nossa-historia'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  QuemSomosRoute: typeof QuemSomosRoute
+  QuemSomosRoute: typeof QuemSomosRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +74,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuemSomosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quem-somos/nossa-historia': {
+      id: '/quem-somos/nossa-historia'
+      path: '/nossa-historia'
+      fullPath: '/quem-somos/nossa-historia'
+      preLoaderRoute: typeof QuemSomosNossaHistoriaRouteImport
+      parentRoute: typeof QuemSomosRoute
+    }
   }
 }
 
+interface QuemSomosRouteChildren {
+  QuemSomosNossaHistoriaRoute: typeof QuemSomosNossaHistoriaRoute
+}
+
+const QuemSomosRouteChildren: QuemSomosRouteChildren = {
+  QuemSomosNossaHistoriaRoute: QuemSomosNossaHistoriaRoute,
+}
+
+const QuemSomosRouteWithChildren = QuemSomosRoute._addFileChildren(
+  QuemSomosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  QuemSomosRoute: QuemSomosRoute,
+  QuemSomosRoute: QuemSomosRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
