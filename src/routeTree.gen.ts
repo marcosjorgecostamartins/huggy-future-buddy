@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as LegalAssetsIndexRouteImport } from './routes/legal-assets.index'
 import { Route as LegalAssetsSlugRouteImport } from './routes/legal-assets.$slug'
+import { Route as MaIndexRouteImport } from './routes/ma.index'
 import { Route as QuemSomosMissaoVisaoValoresRouteImport } from './routes/quem-somos.missao-visao-valores'
 import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
 import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
@@ -36,6 +37,11 @@ const LegalAssetsIndexRoute = LegalAssetsIndexRouteImport.update({
 const LegalAssetsSlugRoute = LegalAssetsSlugRouteImport.update({
   id: '/legal-assets/$slug',
   path: '/legal-assets/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaIndexRoute = MaIndexRouteImport.update({
+  id: '/ma/',
+  path: '/ma/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuemSomosMissaoVisaoValoresRoute =
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
   '/legal-assets/': typeof LegalAssetsIndexRoute
+  '/ma/': typeof MaIndexRoute
   '/solucoes/': typeof SolucoesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
   '/legal-assets': typeof LegalAssetsIndexRoute
+  '/ma': typeof MaIndexRoute
   '/solucoes': typeof SolucoesIndexRoute
 }
 export interface FileRoutesById {
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
   '/solucoes/$slug': typeof SolucoesSlugRoute
   '/legal-assets/': typeof LegalAssetsIndexRoute
+  '/ma/': typeof MaIndexRoute
   '/solucoes/': typeof SolucoesIndexRoute
 }
 export interface FileRouteTypes {
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
     | '/legal-assets/'
+    | '/ma/'
     | '/solucoes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
     | '/legal-assets'
+    | '/ma'
     | '/solucoes'
   id:
     | '__root__'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/quem-somos/nossa-historia'
     | '/solucoes/$slug'
     | '/legal-assets/'
+    | '/ma/'
     | '/solucoes/'
   fileRoutesById: FileRoutesById
 }
@@ -130,6 +142,7 @@ export interface RootRouteChildren {
   LegalAssetsSlugRoute: typeof LegalAssetsSlugRoute
   SolucoesSlugRoute: typeof SolucoesSlugRoute
   LegalAssetsIndexRoute: typeof LegalAssetsIndexRoute
+  MaIndexRoute: typeof MaIndexRoute
   SolucoesIndexRoute: typeof SolucoesIndexRoute
 }
 
@@ -161,6 +174,13 @@ declare module '@tanstack/react-router' {
       path: '/legal-assets/$slug'
       fullPath: '/legal-assets/$slug'
       preLoaderRoute: typeof LegalAssetsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ma/': {
+      id: '/ma/'
+      path: '/ma'
+      fullPath: '/ma/'
+      preLoaderRoute: typeof MaIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quem-somos/missao-visao-valores': {
@@ -214,6 +234,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalAssetsSlugRoute: LegalAssetsSlugRoute,
   SolucoesSlugRoute: SolucoesSlugRoute,
   LegalAssetsIndexRoute: LegalAssetsIndexRoute,
+  MaIndexRoute: MaIndexRoute,
   SolucoesIndexRoute: SolucoesIndexRoute,
 }
 export const routeTree = rootRouteImport
