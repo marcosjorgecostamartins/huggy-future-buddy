@@ -10,33 +10,205 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContatoRouteImport } from './routes/contato'
+import { Route as InvestidoresRouteImport } from './routes/investidores'
+import { Route as QuemSomosRouteImport } from './routes/quem-somos'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
+import { Route as LegalAssetsIndexRouteImport } from './routes/legal-assets.index'
+import { Route as LegalAssetsSlugRouteImport } from './routes/legal-assets.$slug'
+import { Route as MaIndexRouteImport } from './routes/ma.index'
+import { Route as MaSlugRouteImport } from './routes/ma.$slug'
+import { Route as QuemSomosMissaoVisaoValoresRouteImport } from './routes/quem-somos.missao-visao-valores'
+import { Route as QuemSomosNossaHistoriaRouteImport } from './routes/quem-somos.nossa-historia'
+import { Route as SolucoesIndexRouteImport } from './routes/solucoes.index'
+import { Route as SolucoesSlugRouteImport } from './routes/solucoes.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestidoresRoute = InvestidoresRouteImport.update({
+  id: '/investidores',
+  path: '/investidores',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuemSomosRoute = QuemSomosRouteImport.update({
+  id: '/quem-somos',
+  path: '/quem-somos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/insights/$slug',
+  path: '/insights/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalAssetsIndexRoute = LegalAssetsIndexRouteImport.update({
+  id: '/legal-assets/',
+  path: '/legal-assets/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalAssetsSlugRoute = LegalAssetsSlugRouteImport.update({
+  id: '/legal-assets/$slug',
+  path: '/legal-assets/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaIndexRoute = MaIndexRouteImport.update({
+  id: '/ma/',
+  path: '/ma/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MaSlugRoute = MaSlugRouteImport.update({
+  id: '/ma/$slug',
+  path: '/ma/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuemSomosMissaoVisaoValoresRoute =
+  QuemSomosMissaoVisaoValoresRouteImport.update({
+    id: '/missao-visao-valores',
+    path: '/missao-visao-valores',
+    getParentRoute: () => QuemSomosRoute,
+  } as any)
+const QuemSomosNossaHistoriaRoute = QuemSomosNossaHistoriaRouteImport.update({
+  id: '/nossa-historia',
+  path: '/nossa-historia',
+  getParentRoute: () => QuemSomosRoute,
+} as any)
+const SolucoesIndexRoute = SolucoesIndexRouteImport.update({
+  id: '/solucoes/',
+  path: '/solucoes/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SolucoesSlugRoute = SolucoesSlugRouteImport.update({
+  id: '/solucoes/$slug',
+  path: '/solucoes/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
+  '/investidores': typeof InvestidoresRoute
+  '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/legal-assets/$slug': typeof LegalAssetsSlugRoute
+  '/ma/$slug': typeof MaSlugRoute
+  '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
+  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
+  '/solucoes/$slug': typeof SolucoesSlugRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/legal-assets/': typeof LegalAssetsIndexRoute
+  '/ma/': typeof MaIndexRoute
+  '/solucoes/': typeof SolucoesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
+  '/investidores': typeof InvestidoresRoute
+  '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/legal-assets/$slug': typeof LegalAssetsSlugRoute
+  '/ma/$slug': typeof MaSlugRoute
+  '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
+  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
+  '/solucoes/$slug': typeof SolucoesSlugRoute
+  '/insights': typeof InsightsIndexRoute
+  '/legal-assets': typeof LegalAssetsIndexRoute
+  '/ma': typeof MaIndexRoute
+  '/solucoes': typeof SolucoesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
+  '/investidores': typeof InvestidoresRoute
+  '/quem-somos': typeof QuemSomosRouteWithChildren
+  '/insights/$slug': typeof InsightsSlugRoute
+  '/legal-assets/$slug': typeof LegalAssetsSlugRoute
+  '/ma/$slug': typeof MaSlugRoute
+  '/quem-somos/missao-visao-valores': typeof QuemSomosMissaoVisaoValoresRoute
+  '/quem-somos/nossa-historia': typeof QuemSomosNossaHistoriaRoute
+  '/solucoes/$slug': typeof SolucoesSlugRoute
+  '/insights/': typeof InsightsIndexRoute
+  '/legal-assets/': typeof LegalAssetsIndexRoute
+  '/ma/': typeof MaIndexRoute
+  '/solucoes/': typeof SolucoesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/contato'
+    | '/investidores'
+    | '/quem-somos'
+    | '/insights/$slug'
+    | '/legal-assets/$slug'
+    | '/ma/$slug'
+    | '/quem-somos/missao-visao-valores'
+    | '/quem-somos/nossa-historia'
+    | '/solucoes/$slug'
+    | '/insights/'
+    | '/legal-assets/'
+    | '/ma/'
+    | '/solucoes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/contato'
+    | '/investidores'
+    | '/quem-somos'
+    | '/insights/$slug'
+    | '/legal-assets/$slug'
+    | '/ma/$slug'
+    | '/quem-somos/missao-visao-valores'
+    | '/quem-somos/nossa-historia'
+    | '/solucoes/$slug'
+    | '/insights'
+    | '/legal-assets'
+    | '/ma'
+    | '/solucoes'
+  id:
+    | '__root__'
+    | '/'
+    | '/contato'
+    | '/investidores'
+    | '/quem-somos'
+    | '/insights/$slug'
+    | '/legal-assets/$slug'
+    | '/ma/$slug'
+    | '/quem-somos/missao-visao-valores'
+    | '/quem-somos/nossa-historia'
+    | '/solucoes/$slug'
+    | '/insights/'
+    | '/legal-assets/'
+    | '/ma/'
+    | '/solucoes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContatoRoute: typeof ContatoRoute
+  InvestidoresRoute: typeof InvestidoresRoute
+  QuemSomosRoute: typeof QuemSomosRouteWithChildren
+  InsightsSlugRoute: typeof InsightsSlugRoute
+  LegalAssetsSlugRoute: typeof LegalAssetsSlugRoute
+  MaSlugRoute: typeof MaSlugRoute
+  SolucoesSlugRoute: typeof SolucoesSlugRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
+  LegalAssetsIndexRoute: typeof LegalAssetsIndexRoute
+  MaIndexRoute: typeof MaIndexRoute
+  SolucoesIndexRoute: typeof SolucoesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +220,127 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investidores': {
+      id: '/investidores'
+      path: '/investidores'
+      fullPath: '/investidores'
+      preLoaderRoute: typeof InvestidoresRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quem-somos': {
+      id: '/quem-somos'
+      path: '/quem-somos'
+      fullPath: '/quem-somos'
+      preLoaderRoute: typeof QuemSomosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/insights/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal-assets/': {
+      id: '/legal-assets/'
+      path: '/legal-assets'
+      fullPath: '/legal-assets/'
+      preLoaderRoute: typeof LegalAssetsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal-assets/$slug': {
+      id: '/legal-assets/$slug'
+      path: '/legal-assets/$slug'
+      fullPath: '/legal-assets/$slug'
+      preLoaderRoute: typeof LegalAssetsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ma/': {
+      id: '/ma/'
+      path: '/ma'
+      fullPath: '/ma/'
+      preLoaderRoute: typeof MaIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ma/$slug': {
+      id: '/ma/$slug'
+      path: '/ma/$slug'
+      fullPath: '/ma/$slug'
+      preLoaderRoute: typeof MaSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quem-somos/missao-visao-valores': {
+      id: '/quem-somos/missao-visao-valores'
+      path: '/missao-visao-valores'
+      fullPath: '/quem-somos/missao-visao-valores'
+      preLoaderRoute: typeof QuemSomosMissaoVisaoValoresRouteImport
+      parentRoute: typeof QuemSomosRoute
+    }
+    '/quem-somos/nossa-historia': {
+      id: '/quem-somos/nossa-historia'
+      path: '/nossa-historia'
+      fullPath: '/quem-somos/nossa-historia'
+      preLoaderRoute: typeof QuemSomosNossaHistoriaRouteImport
+      parentRoute: typeof QuemSomosRoute
+    }
+    '/solucoes/': {
+      id: '/solucoes/'
+      path: '/solucoes'
+      fullPath: '/solucoes/'
+      preLoaderRoute: typeof SolucoesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/solucoes/$slug': {
+      id: '/solucoes/$slug'
+      path: '/solucoes/$slug'
+      fullPath: '/solucoes/$slug'
+      preLoaderRoute: typeof SolucoesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
+interface QuemSomosRouteChildren {
+  QuemSomosMissaoVisaoValoresRoute: typeof QuemSomosMissaoVisaoValoresRoute
+  QuemSomosNossaHistoriaRoute: typeof QuemSomosNossaHistoriaRoute
+}
+
+const QuemSomosRouteChildren: QuemSomosRouteChildren = {
+  QuemSomosMissaoVisaoValoresRoute: QuemSomosMissaoVisaoValoresRoute,
+  QuemSomosNossaHistoriaRoute: QuemSomosNossaHistoriaRoute,
+}
+
+const QuemSomosRouteWithChildren = QuemSomosRoute._addFileChildren(
+  QuemSomosRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContatoRoute: ContatoRoute,
+  InvestidoresRoute: InvestidoresRoute,
+  QuemSomosRoute: QuemSomosRouteWithChildren,
+  InsightsSlugRoute: InsightsSlugRoute,
+  LegalAssetsSlugRoute: LegalAssetsSlugRoute,
+  MaSlugRoute: MaSlugRoute,
+  SolucoesSlugRoute: SolucoesSlugRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
+  LegalAssetsIndexRoute: LegalAssetsIndexRoute,
+  MaIndexRoute: MaIndexRoute,
+  SolucoesIndexRoute: SolucoesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
