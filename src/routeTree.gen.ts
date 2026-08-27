@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as InvestidoresRouteImport } from './routes/investidores'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
@@ -26,6 +27,11 @@ import { Route as SolucoesSlugRouteImport } from './routes/solucoes.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContatoRoute = ContatoRouteImport.update({
+  id: '/contato',
+  path: '/contato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InvestidoresRoute = InvestidoresRouteImport.update({
@@ -92,6 +98,7 @@ const SolucoesSlugRoute = SolucoesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
   '/investidores': typeof InvestidoresRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
@@ -107,6 +114,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
   '/investidores': typeof InvestidoresRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
@@ -123,6 +131,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/contato': typeof ContatoRoute
   '/investidores': typeof InvestidoresRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
@@ -140,6 +149,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/contato'
     | '/investidores'
     | '/quem-somos'
     | '/insights/$slug'
@@ -155,6 +165,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/contato'
     | '/investidores'
     | '/quem-somos'
     | '/insights/$slug'
@@ -170,6 +181,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/contato'
     | '/investidores'
     | '/quem-somos'
     | '/insights/$slug'
@@ -186,6 +198,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ContatoRoute: typeof ContatoRoute
   InvestidoresRoute: typeof InvestidoresRoute
   QuemSomosRoute: typeof QuemSomosRouteWithChildren
   InsightsSlugRoute: typeof InsightsSlugRoute
@@ -205,6 +218,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contato': {
+      id: '/contato'
+      path: '/contato'
+      fullPath: '/contato'
+      preLoaderRoute: typeof ContatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/investidores': {
@@ -310,6 +330,7 @@ const QuemSomosRouteWithChildren = QuemSomosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ContatoRoute: ContatoRoute,
   InvestidoresRoute: InvestidoresRoute,
   QuemSomosRoute: QuemSomosRouteWithChildren,
   InsightsSlugRoute: InsightsSlugRoute,
