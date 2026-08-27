@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InvestidoresRouteImport } from './routes/investidores'
 import { Route as QuemSomosRouteImport } from './routes/quem-somos'
 import { Route as InsightsIndexRouteImport } from './routes/insights.index'
 import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
@@ -25,6 +26,11 @@ import { Route as SolucoesSlugRouteImport } from './routes/solucoes.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestidoresRoute = InvestidoresRouteImport.update({
+  id: '/investidores',
+  path: '/investidores',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuemSomosRoute = QuemSomosRouteImport.update({
@@ -86,6 +92,7 @@ const SolucoesSlugRoute = SolucoesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/investidores': typeof InvestidoresRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
   '/legal-assets/$slug': typeof LegalAssetsSlugRoute
@@ -100,6 +107,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/investidores': typeof InvestidoresRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
   '/legal-assets/$slug': typeof LegalAssetsSlugRoute
@@ -115,6 +123,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/investidores': typeof InvestidoresRoute
   '/quem-somos': typeof QuemSomosRouteWithChildren
   '/insights/$slug': typeof InsightsSlugRoute
   '/legal-assets/$slug': typeof LegalAssetsSlugRoute
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/investidores'
     | '/quem-somos'
     | '/insights/$slug'
     | '/legal-assets/$slug'
@@ -145,6 +155,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/investidores'
     | '/quem-somos'
     | '/insights/$slug'
     | '/legal-assets/$slug'
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/investidores'
     | '/quem-somos'
     | '/insights/$slug'
     | '/legal-assets/$slug'
@@ -174,6 +186,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  InvestidoresRoute: typeof InvestidoresRoute
   QuemSomosRoute: typeof QuemSomosRouteWithChildren
   InsightsSlugRoute: typeof InsightsSlugRoute
   LegalAssetsSlugRoute: typeof LegalAssetsSlugRoute
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investidores': {
+      id: '/investidores'
+      path: '/investidores'
+      fullPath: '/investidores'
+      preLoaderRoute: typeof InvestidoresRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quem-somos': {
@@ -290,6 +310,7 @@ const QuemSomosRouteWithChildren = QuemSomosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  InvestidoresRoute: InvestidoresRoute,
   QuemSomosRoute: QuemSomosRouteWithChildren,
   InsightsSlugRoute: InsightsSlugRoute,
   LegalAssetsSlugRoute: LegalAssetsSlugRoute,
