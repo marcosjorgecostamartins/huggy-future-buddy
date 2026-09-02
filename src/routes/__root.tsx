@@ -19,7 +19,7 @@ import { Cursor } from "@/components/site/Cursor";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import { LocaleProvider } from "@/lib/i18n";
+import { LOCALES, LocaleProvider } from "@/lib/i18n";
 import { getStoredLocale } from "@/lib/locale.functions";
 
 function NotFoundComponent() {
@@ -161,8 +161,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const locale = Route.useLoaderData({ select: (d) => d?.locale ?? "pt" });
+  const lang = LOCALES.find((l) => l.code === locale)?.htmlLang ?? "pt-BR";
+
   return (
-    <html lang="pt-BR">
+    <html lang={lang}>
       <head>
         <HeadContent />
       </head>
