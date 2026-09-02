@@ -119,6 +119,7 @@ function Home() {
   return (
     <PageTransition>
       <Hero />
+      <MarketTicker />
 
       <Section>
         <Reveal>
