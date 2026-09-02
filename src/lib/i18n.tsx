@@ -2,10 +2,10 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useState, t
 
 export type Locale = "pt" | "en" | "es";
 
-export const LOCALES: { code: Locale; label: string; htmlLang: string }[] = [
-  { code: "pt", label: "PT", htmlLang: "pt-BR" },
-  { code: "en", label: "EN", htmlLang: "en" },
-  { code: "es", label: "ES", htmlLang: "es" },
+export const LOCALES: { code: Locale; label: string; name: string; htmlLang: string }[] = [
+  { code: "pt", label: "PT", name: "Português", htmlLang: "pt-BR" },
+  { code: "en", label: "EN", name: "English", htmlLang: "en" },
+  { code: "es", label: "ES", name: "Español", htmlLang: "es" },
 ];
 
 const STORAGE_KEY = "assessmoney:locale";

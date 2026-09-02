@@ -17,6 +17,8 @@ export function LanguageSwitcher({ className }: { className?: string }) {
           onClick={() => setLocale(l.code)}
           aria-pressed={locale === l.code}
           lang={l.htmlLang}
+          aria-label={l.name}
+          title={l.name}
           className={cn(
             "px-2 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors",
             locale === l.code ? "bg-emerald-action text-cream" : "text-cream/60 hover:text-cream",
