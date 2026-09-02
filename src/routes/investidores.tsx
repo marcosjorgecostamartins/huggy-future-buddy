@@ -3,6 +3,7 @@ import { useState } from "react";
 import { CTASection, PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { Eyebrow } from "@/components/site/ui";
+import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/site";
 
 export const Route = createFileRoute("/investidores")({
@@ -53,6 +54,7 @@ const OPORTUNIDADES = [
 ];
 
 function Investidores() {
+  const { t } = useI18n();
   const [sent, setSent] = useState(false);
 
   return (
@@ -71,7 +73,7 @@ function Investidores() {
               {PERFIS.map((p) => (
                 <li key={p} className="flex gap-4 text-[15px] leading-relaxed text-graphite/80">
                   <span className="mt-2 size-1.5 shrink-0 bg-emerald-action" aria-hidden="true" />
-                  {p}
+                  {t(p)}
                 </li>
               ))}
             </ul>
@@ -80,8 +82,8 @@ function Investidores() {
             {OPORTUNIDADES.map((o, i) => (
               <Reveal key={o.title} index={i % 2}>
                 <div className="h-full bg-cream p-8">
-                  <h2 className="text-xl leading-snug">{o.title}</h2>
-                  <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{o.text}</p>
+                  <h2 className="text-xl leading-snug">{t(o.title)}</h2>
+                  <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">{t(o.text)}</p>
                 </div>
               </Reveal>
             ))}
@@ -94,11 +96,12 @@ function Investidores() {
           <div>
             <Eyebrow>Cadastro</Eyebrow>
             <h2 className="mt-8 text-3xl leading-tight md:text-4xl">
-              Receba operações compatíveis com o seu mandato.
+              {t("Receba operações compatíveis com o seu mandato.")}
             </h2>
             <p className="mt-6 max-w-md text-[15px] leading-relaxed text-institutional-soft">
-              As informações são tratadas de forma confidencial e utilizadas exclusivamente para apresentação de
-              oportunidades aderentes ao perfil informado.
+              {t(
+                "As informações são tratadas de forma confidencial e utilizadas exclusivamente para apresentação de oportunidades aderentes ao perfil informado.",
+              )}
             </p>
           </div>
 
@@ -107,9 +110,9 @@ function Investidores() {
               role="status"
               className="flex min-h-[280px] flex-col justify-center border border-champagne/30 p-10"
             >
-              <p className="font-display text-2xl text-cream">Cadastro recebido.</p>
+              <p className="font-display text-2xl text-cream">{t("Cadastro recebido.")}</p>
               <p className="mt-4 text-[15px] text-institutional-soft">
-                Nossa equipe entrará em contato para entender seu mandato e alinhar o fluxo de oportunidades.
+                {t("Nossa equipe entrará em contato para entender seu mandato e alinhar o fluxo de oportunidades.")}
               </p>
             </div>
           ) : (
@@ -120,13 +123,13 @@ function Investidores() {
                 setSent(true);
               }}
             >
-              <Field label="Nome" name="nome" required />
-              <Field label="Empresa / Instituição" name="empresa" />
-              <Field label="E-mail" name="email" type="email" required />
-              <Field label="Telefone" name="telefone" type="tel" />
+              <Field label={t("Nome")} name="nome" required />
+              <Field label={t("Empresa / Instituição")} name="empresa" />
+              <Field label={t("E-mail")} name="email" type="email" required />
+              <Field label={t("Telefone")} name="telefone" type="tel" />
               <div className="sm:col-span-2">
                 <label htmlFor="perfil" className="block text-[11px] uppercase tracking-[0.18em] text-champagne">
-                  Perfil de investidor
+                  {t("Perfil de investidor")}
                 </label>
                 <select
                   id="perfil"
@@ -135,14 +138,14 @@ function Investidores() {
                 >
                   {PERFIS.map((p) => (
                     <option key={p} value={p} className="bg-graphite">
-                      {p}
+                      {t(p)}
                     </option>
                   ))}
                 </select>
               </div>
               <div className="sm:col-span-2">
                 <label htmlFor="ticket" className="block text-[11px] uppercase tracking-[0.18em] text-champagne">
-                  Interesse e ticket médio
+                  {t("Interesse e ticket médio")}
                 </label>
                 <textarea
                   id="ticket"
@@ -155,10 +158,10 @@ function Investidores() {
                 type="submit"
                 className="sm:col-span-2 justify-self-start bg-emerald-action px-8 py-4 text-[11px] uppercase tracking-[0.2em] text-cream transition-colors hover:bg-cream hover:text-graphite"
               >
-                Enviar cadastro
+                {t("Enviar cadastro")}
               </button>
               <p className="text-[13px] text-institutional-soft sm:col-span-2">
-                Prefere falar diretamente? {" "}
+                {t("Prefere falar diretamente?")} {" "}
                 <a href={`mailto:${CONTACT.email}`} className="nav-underline text-champagne">
                   {CONTACT.email}
                 </a>

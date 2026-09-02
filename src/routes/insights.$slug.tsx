@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { CTASection, PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { Eyebrow } from "@/components/site/ui";
+import { useI18n, useIntlLocale } from "@/lib/i18n";
 import { POSTS } from "@/lib/insights";
 
 export const Route = createFileRoute("/insights/$slug")({
@@ -46,33 +47,34 @@ export const Route = createFileRoute("/insights/$slug")({
   component: InsightPost,
 });
 
-const dateFmt = new Intl.DateTimeFormat("pt-BR", { day: "2-digit", month: "long", year: "numeric" });
-
 function InsightPost() {
+  const { t } = useI18n();
+  const intlLocale = useIntlLocale();
+  const dateFmt = new Intl.DateTimeFormat(intlLocale, { day: "2-digit", month: "long", year: "numeric" });
   const { post } = Route.useLoaderData();
   const related = POSTS.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   return (
     <PageTransition>
-      <PageHero eyebrow={`Insights / ${post.category}`} title={post.title} subtitle={post.excerpt} />
+      <PageHero eyebrow={`Insights / ${t(post.category)}`} title={post.title} subtitle={post.excerpt} />
 
       <Section>
         <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
           <Reveal className="lg:sticky lg:top-32 lg:self-start">
             <dl className="space-y-6 font-mono text-[11px] uppercase tabular tracking-[0.16em] text-muted-foreground">
               <div>
-                <dt className="text-emerald-action">Publicado</dt>
+                <dt className="text-emerald-action">{t("Publicado")}</dt>
                 <dd className="mt-2">
                   <time dateTime={post.date}>{dateFmt.format(new Date(post.date))}</time>
                 </dd>
               </div>
               <div>
-                <dt className="text-emerald-action">Leitura</dt>
-                <dd className="mt-2">{post.readingTime}</dd>
+                <dt className="text-emerald-action">{t("Leitura")}</dt>
+                <dd className="mt-2">{t(post.readingTime)}</dd>
               </div>
               <div>
-                <dt className="text-emerald-action">Categoria</dt>
-                <dd className="mt-2">{post.category}</dd>
+                <dt className="text-emerald-action">{t("Categoria")}</dt>
+                <dd className="mt-2">{t(post.category)}</dd>
               </div>
             </dl>
           </Reveal>
@@ -80,7 +82,7 @@ function InsightPost() {
           <article className="space-y-8">
             {post.body.map((p, i) => (
               <Reveal key={i} index={Math.min(i, 3)}>
-                <p className="text-lg leading-[1.75] text-graphite/85">{p}</p>
+                <p className="text-lg leading-[1.75] text-graphite/85">{t(p)}</p>
               </Reveal>
             ))}
           </article>
@@ -98,9 +100,9 @@ function InsightPost() {
               className="group flex flex-col gap-6 bg-cream p-8 transition-colors hover:bg-forest-deep"
             >
               <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-emerald-action">
-                {p.category}
+                {t(p.category)}
               </span>
-              <h2 className="text-xl leading-snug transition-colors group-hover:text-cream">{p.title}</h2>
+              <h2 className="text-xl leading-snug transition-colors group-hover:text-cream">{t(p.title)}</h2>
             </Link>
           ))}
         </div>
