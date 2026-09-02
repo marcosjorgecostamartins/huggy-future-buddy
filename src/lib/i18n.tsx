@@ -11,6 +11,7 @@ export const LOCALES: { code: Locale; label: string; name: string; htmlLang: str
 ];
 
 const STORAGE_KEY = "assessmoney:locale";
+const LOCALE_COOKIE = "assessmoney_locale";
 
 /**
  * Dictionaries are keyed by the Brazilian Portuguese source string.
@@ -23,15 +24,26 @@ type Ctx = { locale: Locale; setLocale: (l: Locale) => void; t: (s: string) => s
 
 const LocaleContext = createContext<Ctx>({ locale: "pt", setLocale: () => {}, t: (s) => s });
 
-export function LocaleProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("pt");
+export function LocaleProvider({
+  children,
+  initialLocale = "pt",
+}: {
+  children: ReactNode;
+  initialLocale?: Locale;
+}) {
+  const [locale, setLocaleState] = useState<Locale>(initialLocale);
 
-  // Português é o idioma institucional padrão; só uma escolha explícita do
-  // usuário (persistida) muda o idioma.
+  // Português é o idioma institucional padrão. O idioma escolhido vem do
+  // cookie (já resolvido no servidor); o localStorage é apenas fallback para
+  // sessões antigas, anteriores ao cookie.
   useEffect(() => {
+    if (initialLocale !== "pt") return;
     const stored = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (stored && LOCALES.some((l) => l.code === stored)) setLocaleState(stored);
-  }, []);
+    if (stored && stored !== "pt" && LOCALES.some((l) => l.code === stored)) {
+      setLocaleState(stored);
+      document.cookie = `${LOCALE_COOKIE}=${stored}; path=/; max-age=31536000; SameSite=Lax`;
+    }
+  }, [initialLocale]);
 
   useEffect(() => {
     const entry = LOCALES.find((l) => l.code === locale);
@@ -40,6 +52,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
 
   const setLocale = useCallback((l: Locale) => {
     setLocaleState(l);
+    document.cookie = `${LOCALE_COOKIE}=${l}; path=/; max-age=31536000; SameSite=Lax`;
     try {
       window.localStorage.setItem(STORAGE_KEY, l);
     } catch {
@@ -47,10 +60,7 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const t = useCallback(
-    (s: string) => (locale === "pt" ? s : (DICT[locale][s] ?? s)),
-    [locale],
-  );
+  const t = useCallback((s: string) => (locale === "pt" ? s : (DICT[locale][s] ?? s)), [locale]);
 
   const value = useMemo(() => ({ locale, setLocale, t }), [locale, setLocale, t]);
 
