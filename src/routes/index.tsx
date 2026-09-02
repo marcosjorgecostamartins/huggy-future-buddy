@@ -3,12 +3,13 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import cashImage from "@/assets/cash.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
-import logoWhite from "@/assets/logo-white.png.asset.json";
 import { CTASection, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal, RevealWords } from "@/components/site/Reveal";
-import { Marquee } from "@/components/site/Marquee";
+import { EcosystemTriad } from "@/components/site/EcosystemTriad";
+import { PartnerLogos } from "@/components/site/PartnerLogos";
+import { MarketTicker } from "@/components/site/MarketTicker";
+import { BrandLogo } from "@/components/site/BrandLogo";
 import { Cta, Eyebrow, SectionHeading, StatCounter } from "@/components/site/ui";
-import { CONTACT } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
