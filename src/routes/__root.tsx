@@ -195,7 +195,9 @@ function RootComponent() {
           </div>
         </AnimatePresence>
         <Footer />
+        <WhatsAppFab />
         <Toaster position="bottom-right" />
+
       </LocaleProvider>
     </QueryClientProvider>
   );
