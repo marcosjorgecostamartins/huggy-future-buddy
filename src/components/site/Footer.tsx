@@ -85,12 +85,12 @@ export function Footer() {
               <ul className="mt-5 space-y-2.5">
                 <li>
                   <Link to="/insights" className="text-[13px] text-institutional-soft hover:text-emerald-action">
-                    Insights
+                    {t("Insights")}
                   </Link>
                 </li>
                 <li>
                   <Link to="/contato" className="text-[13px] text-institutional-soft hover:text-emerald-action">
-                    Contato
+                    {t("Contato")}
                   </Link>
                 </li>
                 <li>
@@ -100,7 +100,7 @@ export function Footer() {
                     rel="noreferrer noopener"
                     className="text-[13px] text-institutional-soft hover:text-emerald-action"
                   >
-                    Ostun Group
+                    {t("Ostun Group")}
                   </a>
                 </li>
               </ul>
@@ -111,8 +111,9 @@ export function Footer() {
         <div className="mt-20 flex flex-col gap-4 border-t border-white/10 pt-8 text-[11px] tracking-wide text-institutional-soft md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Assessmoney. {t("Todos os direitos reservados.")}</p>
           <p className="max-w-xl">
-            As informações deste site têm caráter institucional e não constituem oferta, recomendação de
-            investimento ou garantia de resultado.
+            {t(
+              "As informações deste site têm caráter institucional e não constituem oferta, recomendação de investimento ou garantia de resultado.",
+            )}
           </p>
         </div>
       </div>
