@@ -19,6 +19,7 @@ import { Cursor } from "@/components/site/Cursor";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
+import { LocaleProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -177,17 +178,19 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <BrandLoader />
-      <Cursor />
-      <Header />
-      <AnimatePresence mode="wait">
-        <div key={pathname}>
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </div>
-      </AnimatePresence>
-      <Footer />
-      <Toaster position="bottom-right" />
+      <LocaleProvider>
+        <BrandLoader />
+        <Cursor />
+        <Header />
+        <AnimatePresence mode="wait">
+          <div key={pathname}>
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </div>
+        </AnimatePresence>
+        <Footer />
+        <Toaster position="bottom-right" />
+      </LocaleProvider>
     </QueryClientProvider>
   );
 }

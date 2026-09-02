@@ -9,17 +9,21 @@ export const CONTACT = {
   ostun: "https://ostungroup.com",
 };
 
-export const PARTNERS = [
-  "Prime You",
-  "Galleria Bank",
-  "CashMe",
-  "Pontte",
-  "Banco Bari",
-  "Creditas",
-  "Primex Finance Global",
-  "RD&JC Capital",
-  "Multiplike",
+export type Partner = { name: string; logo: string };
+
+export const PARTNERS: Partner[] = [
+  { name: "Prime You", logo: "/partners/prime-you.png" },
+  { name: "Galleria Bank", logo: "/partners/galleria-bank.png" },
+  { name: "CashMe", logo: "/partners/cashme.png" },
+  { name: "Pontte", logo: "/partners/pontte.png" },
+  { name: "Banco Bari", logo: "/partners/banco-bari.png" },
+  { name: "Creditas", logo: "/partners/creditas.png" },
+  { name: "Primex Finance Global", logo: "/partners/primex.png" },
+  { name: "RD&JC Capital", logo: "/partners/rdjc-capital.png" },
+  { name: "Multiplike", logo: "/partners/multiplike.png" },
 ];
+
+export const OSTUN_TRIAD_IMAGE = "/brand/ostun-member-companies.png";
 
 export type NavItem = {
   label: string;

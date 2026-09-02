@@ -3,12 +3,13 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import cashImage from "@/assets/cash.jpg.asset.json";
 import heroVideo from "@/assets/hero-video.mp4.asset.json";
-import logoWhite from "@/assets/logo-white.png.asset.json";
 import { CTASection, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal, RevealWords } from "@/components/site/Reveal";
-import { Marquee } from "@/components/site/Marquee";
+import { EcosystemTriad } from "@/components/site/EcosystemTriad";
+import { PartnerLogos } from "@/components/site/PartnerLogos";
+import { MarketTicker } from "@/components/site/MarketTicker";
+import { BrandLogo } from "@/components/site/BrandLogo";
 import { Cta, Eyebrow, SectionHeading, StatCounter } from "@/components/site/ui";
-import { CONTACT } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,6 +78,14 @@ function Hero() {
       <div className="blueprint absolute inset-0 opacity-60" aria-hidden="true" />
 
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 pt-44 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10"
+        >
+          <BrandLogo priority highlight width={280} height={86} imgClassName="h-20 md:h-24" />
+        </motion.div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
           <Eyebrow>Estruturação financeira desde 2011</Eyebrow>
         </motion.div>
@@ -118,6 +127,7 @@ function Home() {
   return (
     <PageTransition>
       <Hero />
+      <MarketTicker />
 
       <Section>
         <Reveal>
@@ -192,32 +202,9 @@ function Home() {
         </div>
       </section>
 
-      <Section tone="forest">
-        <div className="grid gap-16 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-          <div>
-            <Eyebrow>Ecossistema</Eyebrow>
-            <p className="mt-10 max-w-3xl font-display text-3xl leading-[1.25] md:text-[2.6rem]">
-              A Assessmoney integra a Ostun como uma de suas Member Companies, combinando sua experiência no
-              mercado brasileiro a um ecossistema mais amplo de soluções financeiras, investimentos e advisory.
-            </p>
-          </div>
-          <div className="flex flex-col items-start gap-8">
-            <img src={logoWhite.url} alt="Assessmoney" width={140} height={44} loading="lazy" className="h-12 w-auto" />
-            <a
-              href={CONTACT.ostun}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="border border-champagne/50 px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-champagne transition-colors hover:bg-champagne/10"
-            >
-              Member Company of Ostun ↗
-            </a>
-          </div>
-        </div>
-      </Section>
+      <EcosystemTriad />
 
-      <div className="bg-graphite text-cream">
-        <Marquee label="Instituições e parceiros" />
-      </div>
+      <PartnerLogos />
 
       <CTASection
         title="Sua operação exige uma estrutura sob medida."
