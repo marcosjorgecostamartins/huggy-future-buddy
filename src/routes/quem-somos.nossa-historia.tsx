@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { CTASection, PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
+import { useI18n } from "@/lib/i18n";
 import { TIMELINE } from "@/lib/content";
 
 export const Route = createFileRoute("/quem-somos/nossa-historia")({
@@ -27,6 +28,7 @@ export const Route = createFileRoute("/quem-somos/nossa-historia")({
 });
 
 function NossaHistoria() {
+  const { t } = useI18n();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 60%"] });
   const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
@@ -56,10 +58,10 @@ function NossaHistoria() {
                 />
                 <Reveal index={i}>
                   <p className="font-mono text-[11px] uppercase tabular tracking-[0.24em] text-emerald-action">
-                    {item.year}
+                    {t(item.year)}
                   </p>
-                  <h2 className="mt-5 text-3xl md:text-5xl">{item.title}</h2>
-                  <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{item.text}</p>
+                  <h2 className="mt-5 text-3xl md:text-5xl">{t(item.title)}</h2>
+                  <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">{t(item.text)}</p>
                 </Reveal>
               </li>
             ))}

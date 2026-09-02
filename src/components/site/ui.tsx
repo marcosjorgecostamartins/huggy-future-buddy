@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useInView } from "motion/react";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useI18n, useTr } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 type CtaProps = {
@@ -13,6 +14,7 @@ type CtaProps = {
 };
 
 export function Cta({ to, params, children, variant = "solid", className }: CtaProps) {
+  const tr = useTr();
   const base =
     "btn-fill group inline-flex items-center gap-3 px-7 py-4 text-[13px] uppercase tracking-[0.16em] font-medium transition-colors duration-500";
   const styles = {
@@ -25,13 +27,14 @@ export function Cta({ to, params, children, variant = "solid", className }: CtaP
 
   return (
     <Link to={to} params={params as never} className={cn(base, styles, className)}>
-      <span>{children}</span>
+      <span>{tr(children)}</span>
       <ArrowUpRight className="size-4 transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1" />
     </Link>
   );
 }
 
 export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+  const tr = useTr();
   return (
     <p
       className={cn(
@@ -40,17 +43,18 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
       )}
     >
       <span className="h-px w-8 bg-champagne/70" aria-hidden="true" />
-      {children}
+      {tr(children)}
     </p>
   );
 }
 
 export function ChipList({ title, items }: { title?: string; items: string[] }) {
+  const { t } = useI18n();
   return (
     <div>
       {title ? (
         <h3 className="mb-6 font-sans text-[11px] uppercase tracking-[0.28em] text-muted-foreground">
-          {title}
+          {t(title)}
         </h3>
       ) : null}
       <ul className="grid gap-x-10 gap-y-0 sm:grid-cols-2 lg:grid-cols-3">
@@ -66,7 +70,7 @@ export function ChipList({ title, items }: { title?: string; items: string[] }) 
             <span className="font-mono text-[11px] tabular text-emerald-action">
               {String(i + 1).padStart(2, "0")}
             </span>
-            <span className="transition-transform duration-300 group-hover:translate-x-1">{item}</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">{t(item)}</span>
           </motion.li>
         ))}
       </ul>
@@ -87,6 +91,7 @@ export function StatCounter({
   label: string;
   raw?: string;
 }) {
+  const { t } = useI18n();
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [display, setDisplay] = useState(0);
@@ -111,7 +116,7 @@ export function StatCounter({
       <p className="font-mono text-4xl tabular tracking-tight md:text-5xl">
         {raw ?? `${prefix}${display}${suffix}`}
       </p>
-      <p className="mt-3 max-w-[22ch] text-sm text-muted-foreground">{label}</p>
+      <p className="mt-3 max-w-[22ch] text-sm text-muted-foreground">{t(label)}</p>
     </div>
   );
 }
@@ -127,10 +132,11 @@ export function SectionHeading({
   intro?: string;
   invert?: boolean;
 }) {
+  const { t } = useI18n();
   return (
     <div className="max-w-3xl">
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="mt-8 text-4xl leading-[1.05] md:text-6xl">{title}</h2>
+      <h2 className="mt-8 text-4xl leading-[1.05] md:text-6xl">{t(title)}</h2>
       {intro ? (
         <p
           className={cn(
@@ -138,7 +144,7 @@ export function SectionHeading({
             invert ? "text-institutional-soft" : "text-muted-foreground",
           )}
         >
-          {intro}
+          {t(intro)}
         </p>
       ) : null}
     </div>
@@ -146,17 +152,19 @@ export function SectionHeading({
 }
 
 export function Quote({ children }: { children: ReactNode }) {
+  const tr = useTr();
   return (
     <blockquote className="border-l border-champagne/60 pl-8 font-display text-2xl leading-[1.25] md:text-4xl">
-      {children}
+      {tr(children)}
     </blockquote>
   );
 }
 
 export function LegalNote({ children }: { children: ReactNode }) {
+  const tr = useTr();
   return (
     <p className="max-w-2xl border-t border-current/15 pt-4 text-xs leading-relaxed text-muted-foreground">
-      {children}
+      {tr(children)}
     </p>
   );
 }

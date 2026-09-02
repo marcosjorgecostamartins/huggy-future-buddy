@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { DetailPage } from "@/lib/content";
 import { CTASection, PageHero, PageTransition, Section } from "./PageLayout";
 import { Reveal } from "./Reveal";
+import { useI18n } from "@/lib/i18n";
 import { ChipList, Eyebrow, LegalNote, Quote } from "./ui";
 
 export function DetailPageView({
@@ -15,6 +16,7 @@ export function DetailPageView({
   basePath: string;
   siblingsLabel: string;
 }) {
+  const { t } = useI18n();
   return (
     <PageTransition>
       <PageHero eyebrow={page.eyebrow} title={page.title} subtitle={page.summary} />
@@ -31,7 +33,7 @@ export function DetailPageView({
                   <Reveal key={i} index={i} className="space-y-6">
                     {block.body.map((p, j) => (
                       <p key={j} className="text-lg leading-relaxed text-graphite/85 md:text-xl">
-                        {p}
+                        {t(p)}
                       </p>
                     ))}
                   </Reveal>
@@ -74,9 +76,9 @@ export function DetailPageView({
                   className="group flex flex-col gap-2 py-7 md:flex-row md:items-baseline md:justify-between md:gap-12"
                 >
                   <span className="font-display text-2xl transition-colors group-hover:text-emerald-action md:text-3xl">
-                    {s.name}
+                    {t(s.name)}
                   </span>
-                  <span className="max-w-xl text-sm text-institutional-soft">{s.summary}</span>
+                  <span className="max-w-xl text-sm text-institutional-soft">{t(s.summary)}</span>
                   <span className="font-mono text-[11px] tabular text-emerald-action">
                     {String(i + 1).padStart(2, "0")}
                   </span>

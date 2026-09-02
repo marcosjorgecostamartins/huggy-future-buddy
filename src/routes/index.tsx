@@ -10,6 +10,7 @@ import { PartnerLogos } from "@/components/site/PartnerLogos";
 import { MarketTicker } from "@/components/site/MarketTicker";
 import { BrandLogo } from "@/components/site/BrandLogo";
 import { Cta, Eyebrow, SectionHeading, StatCounter } from "@/components/site/ui";
+import { useI18n } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -55,6 +56,7 @@ const PILLARS = [
 ];
 
 function Hero() {
+  const { t } = useI18n();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
@@ -90,7 +92,7 @@ function Hero() {
           <Eyebrow>Estruturação financeira desde 2011</Eyebrow>
         </motion.div>
         <h1 className="mt-10 max-w-[16ch] text-5xl leading-[0.96] text-cream md:text-7xl lg:text-[6.2rem]">
-          <RevealWords text="Capital para situações que exigem mais do que crédito convencional." />
+          <RevealWords text={t("Capital para situações que exigem mais do que crédito convencional.")} />
         </h1>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
@@ -98,8 +100,9 @@ function Hero() {
           transition={{ delay: 0.9, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="mt-10 max-w-2xl text-lg leading-relaxed text-cream/75 md:text-xl"
         >
-          Estruturamos soluções de crédito, investimentos, ativos especiais e operações corporativas —
-          conectando empresas, investidores e oportunidades desde 2011.
+          {t(
+            "Estruturamos soluções de crédito, investimentos, ativos especiais e operações corporativas — conectando empresas, investidores e oportunidades desde 2011.",
+          )}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -120,6 +123,7 @@ function Hero() {
 }
 
 function Home() {
+  const { t } = useI18n();
   const imgRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: imgRef, offset: ["start end", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
@@ -132,14 +136,16 @@ function Home() {
       <Section>
         <Reveal>
           <p className="max-w-5xl text-2xl leading-[1.4] text-graphite md:text-[2.1rem]">
-            Desde 2011, a Assessmoney atua na estruturação de soluções financeiras e operações especiais para
-            empresas, investidores, escritórios jurídicos e detentores de ativos.
+            {t(
+              "Desde 2011, a Assessmoney atua na estruturação de soluções financeiras e operações especiais para empresas, investidores, escritórios jurídicos e detentores de ativos.",
+            )}
           </p>
         </Reveal>
         <Reveal index={1}>
           <p className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Combinamos inteligência financeira, análise de risco, acesso a capital e capacidade de estruturação
-            para transformar necessidades complexas em soluções viáveis.
+            {t(
+              "Combinamos inteligência financeira, análise de risco, acesso a capital e capacidade de estruturação para transformar necessidades complexas em soluções viáveis.",
+            )}
           </p>
         </Reveal>
       </Section>
@@ -157,10 +163,10 @@ function Home() {
                   <span className="font-mono text-[11px] tabular text-emerald-action">{pillar.label}</span>
                   <div>
                     <h3 className="text-3xl leading-tight transition-colors duration-500 group-hover:text-cream">
-                      {pillar.title}
+                      {t(pillar.title)}
                     </h3>
                     <p className="mt-6 text-[15px] leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-cream/70">
-                      {pillar.text}
+                      {t(pillar.text)}
                     </p>
                   </div>
                 </Link>
@@ -176,7 +182,7 @@ function Home() {
             <motion.img
               style={{ y: imgY }}
               src={cashImage.url}
-              alt="Mãos segurando cédulas — imagem editorial em preto e branco"
+              alt={t("Mãos segurando cédulas — imagem editorial em preto e branco")}
               loading="lazy"
               className="absolute inset-0 size-full scale-110 object-cover contrast-125 grayscale"
             />
@@ -186,7 +192,7 @@ function Home() {
             <div className="max-w-xl">
               <Eyebrow>Números</Eyebrow>
               <h2 className="mt-8 text-4xl leading-tight md:text-5xl">
-                Trajetória construída operação por operação.
+                {t("Trajetória construída operação por operação.")}
               </h2>
               <div className="mt-14 grid gap-10 sm:grid-cols-2">
                 <StatCounter raw="2011" label="Ano de fundação" />

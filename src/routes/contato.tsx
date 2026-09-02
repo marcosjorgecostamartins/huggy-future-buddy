@@ -3,6 +3,7 @@ import { useState } from "react";
 import { PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { Eyebrow } from "@/components/site/ui";
+import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/site";
 
 export const Route = createFileRoute("/contato")({
@@ -33,6 +34,7 @@ const ASSUNTOS = [
 ];
 
 function Contato() {
+  const { t } = useI18n();
   const [sent, setSent] = useState(false);
 
   return (
@@ -49,7 +51,7 @@ function Contato() {
             <Eyebrow>Canais diretos</Eyebrow>
             <dl className="mt-10 space-y-8 text-[15px]">
               <div>
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">E-mail</dt>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">{t("E-mail")}</dt>
                 <dd className="mt-2">
                   <a href={`mailto:${CONTACT.email}`} className="nav-underline text-graphite">
                     {CONTACT.email}
@@ -57,7 +59,7 @@ function Contato() {
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">Telefone</dt>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">{t("Telefone")}</dt>
                 <dd className="mt-2">
                   <a href={`tel:${CONTACT.phone.replace(/\D/g, "")}`} className="nav-underline text-graphite">
                     {CONTACT.phone}
@@ -65,16 +67,17 @@ function Contato() {
                 </dd>
               </div>
               <div>
-                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">Endereço</dt>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">{t("Endereço")}</dt>
                 <dd className="mt-2 max-w-xs leading-relaxed text-muted-foreground">{CONTACT.address}</dd>
               </div>
               <div>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">
-                  Confidencialidade
+                  {t("Confidencialidade")}
                 </dt>
                 <dd className="mt-2 max-w-xs leading-relaxed text-muted-foreground">
-                  Informações compartilhadas são tratadas com sigilo e utilizadas exclusivamente para análise da
-                  operação.
+                  {t(
+                    "Informações compartilhadas são tratadas com sigilo e utilizadas exclusivamente para análise da operação.",
+                  )}
                 </dd>
               </div>
             </dl>
@@ -85,10 +88,11 @@ function Contato() {
               role="status"
               className="flex min-h-[320px] flex-col justify-center border border-border bg-white/60 p-10"
             >
-              <p className="font-display text-3xl text-forest">Mensagem enviada.</p>
+              <p className="font-display text-3xl text-forest">{t("Mensagem enviada.")}</p>
               <p className="mt-4 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-                Recebemos sua solicitação. Um especialista entrará em contato para aprofundar o entendimento da
-                operação.
+                {t(
+                  "Recebemos sua solicitação. Um especialista entrará em contato para aprofundar o entendimento da operação.",
+                )}
               </p>
             </div>
           ) : (
@@ -99,13 +103,13 @@ function Contato() {
                 setSent(true);
               }}
             >
-              <Field label="Nome" name="nome" required />
-              <Field label="Empresa" name="empresa" />
-              <Field label="E-mail" name="email" type="email" required />
-              <Field label="Telefone" name="telefone" type="tel" />
+              <Field label={t("Nome")} name="nome" required />
+              <Field label={t("Empresa")} name="empresa" />
+              <Field label={t("E-mail")} name="email" type="email" required />
+              <Field label={t("Telefone")} name="telefone" type="tel" />
               <div className="sm:col-span-2">
                 <label htmlFor="assunto" className="block text-[11px] uppercase tracking-[0.18em] text-forest">
-                  Assunto
+                  {t("Assunto")}
                 </label>
                 <select
                   id="assunto"
@@ -114,14 +118,14 @@ function Contato() {
                 >
                   {ASSUNTOS.map((a) => (
                     <option key={a} value={a}>
-                      {a}
+                      {t(a)}
                     </option>
                   ))}
                 </select>
               </div>
               <div className="sm:col-span-2">
                 <label htmlFor="mensagem" className="block text-[11px] uppercase tracking-[0.18em] text-forest">
-                  Descreva sua operação
+                  {t("Descreva sua operação")}
                 </label>
                 <textarea
                   id="mensagem"
@@ -135,7 +139,7 @@ function Contato() {
                 type="submit"
                 className="justify-self-start bg-forest px-8 py-4 text-[11px] uppercase tracking-[0.2em] text-cream transition-colors hover:bg-emerald-action sm:col-span-2"
               >
-                Enviar mensagem
+                {t("Enviar mensagem")}
               </button>
             </form>
           )}
