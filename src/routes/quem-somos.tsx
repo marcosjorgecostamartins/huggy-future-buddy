@@ -2,6 +2,7 @@ import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-r
 import { CTASection, PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { Eyebrow } from "@/components/site/ui";
+import { useI18n } from "@/lib/i18n";
 import { CONTACT } from "@/lib/site";
 
 export const Route = createFileRoute("/quem-somos")({
@@ -31,6 +32,7 @@ const SUB = [
 ];
 
 function QuemSomosLayout() {
+  const { t } = useI18n();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   if (pathname !== "/quem-somos") return <Outlet />;
 
@@ -53,7 +55,7 @@ function QuemSomosLayout() {
                     to={s.to as never}
                     className="nav-underline text-sm uppercase tracking-[0.14em] text-muted-foreground hover:text-forest"
                   >
-                    {s.label}
+                    {t(s.label)}
                   </Link>
                 </li>
               ))}
@@ -67,7 +69,7 @@ function QuemSomosLayout() {
               "Atuamos junto a empresas, empresários, investidores, fundos de investimento, Family Offices, escritórios de advocacia, instituições financeiras e parceiros especializados.",
             ].map((p, i) => (
               <Reveal key={i} index={i}>
-                <p className="text-lg leading-relaxed text-graphite/85 md:text-xl">{p}</p>
+                <p className="text-lg leading-relaxed text-graphite/85 md:text-xl">{t(p)}</p>
               </Reveal>
             ))}
           </div>
@@ -79,13 +81,14 @@ function QuemSomosLayout() {
           <div>
             <Eyebrow>Ostun</Eyebrow>
             <p className="mt-10 max-w-3xl font-display text-2xl leading-[1.3] md:text-[2.2rem]">
-              Atualmente, a Assessmoney integra a Ostun como uma de suas Member Companies, combinando sua
-              experiência no mercado brasileiro a um ecossistema mais amplo de soluções financeiras,
-              investimentos e advisory.
+              {t(
+                "Atualmente, a Assessmoney integra a Ostun como uma de suas Member Companies, combinando sua experiência no mercado brasileiro a um ecossistema mais amplo de soluções financeiras, investimentos e advisory.",
+              )}
             </p>
             <p className="mt-8 max-w-2xl text-base leading-relaxed text-institutional-soft">
-              Nosso papel é compreender cada necessidade, estruturar a operação, analisar riscos e conectar
-              projetos, ativos e empresas às fontes de capital mais adequadas.
+              {t(
+                "Nosso papel é compreender cada necessidade, estruturar a operação, analisar riscos e conectar projetos, ativos e empresas às fontes de capital mais adequadas.",
+              )}
             </p>
           </div>
           <a
@@ -94,7 +97,7 @@ function QuemSomosLayout() {
             rel="noreferrer noopener"
             className="inline-block self-start border border-champagne/50 px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-champagne transition-colors hover:bg-champagne/10 lg:self-end"
           >
-            Member Company of Ostun ↗
+            {t("Member Company of Ostun")} ↗
           </a>
         </div>
       </Section>

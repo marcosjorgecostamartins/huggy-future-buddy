@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CTASection, PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
+import { useI18n } from "@/lib/i18n";
 import { LEGAL_ASSETS } from "@/lib/content";
 
 export const Route = createFileRoute("/legal-assets/")({
@@ -25,6 +26,7 @@ export const Route = createFileRoute("/legal-assets/")({
 });
 
 function LegalAssetsHub() {
+  const { t } = useI18n();
   return (
     <PageTransition>
       <PageHero
@@ -47,10 +49,10 @@ function LegalAssetsHub() {
                 </span>
                 <div>
                   <h2 className="text-3xl leading-tight transition-colors duration-500 group-hover:text-cream md:text-4xl">
-                    {s.name}
+                    {t(s.name)}
                   </h2>
                   <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground transition-colors duration-500 group-hover:text-cream/70">
-                    {s.summary}
+                    {t(s.summary)}
                   </p>
                 </div>
               </Link>

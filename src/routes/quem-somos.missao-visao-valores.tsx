@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { CTASection, PageHero, PageTransition, Section } from "@/components/site/PageLayout";
 import { Reveal } from "@/components/site/Reveal";
 import { Eyebrow } from "@/components/site/ui";
+import { useI18n } from "@/lib/i18n";
 import { VALORES } from "@/lib/content";
 
 export const Route = createFileRoute("/quem-somos/missao-visao-valores")({
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/quem-somos/missao-visao-valores")({
 });
 
 function MissaoVisaoValores() {
+  const { t } = useI18n();
   return (
     <PageTransition>
       <PageHero
@@ -38,15 +40,17 @@ function MissaoVisaoValores() {
           <Reveal>
             <Eyebrow>Missão</Eyebrow>
             <p className="mt-8 font-display text-2xl leading-[1.3] md:text-3xl">
-              Transformar necessidades financeiras e ativos complexos em soluções estruturadas, conectando
-              empresas, investidores e oportunidades com inteligência, segurança e geração de valor.
+              {t(
+                "Transformar necessidades financeiras e ativos complexos em soluções estruturadas, conectando empresas, investidores e oportunidades com inteligência, segurança e geração de valor.",
+              )}
             </p>
           </Reveal>
           <Reveal index={1}>
             <Eyebrow>Visão</Eyebrow>
             <p className="mt-8 font-display text-2xl leading-[1.3] md:text-3xl">
-              Ser reconhecida como uma boutique de referência em estruturação financeira, ativos especiais,
-              crédito privado e operações corporativas no Brasil.
+              {t(
+                "Ser reconhecida como uma boutique de referência em estruturação financeira, ativos especiais, crédito privado e operações corporativas no Brasil.",
+              )}
             </p>
           </Reveal>
         </div>
@@ -61,9 +65,9 @@ function MissaoVisaoValores() {
                 <span className="font-mono text-[11px] tabular text-emerald-action">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <h2 className="mt-8 text-2xl leading-tight">{v.title}</h2>
+                <h2 className="mt-8 text-2xl leading-tight">{t(v.title)}</h2>
                 <p className="mt-4 text-[15px] leading-relaxed text-institutional-soft transition-colors duration-500 group-hover:text-cream/75">
-                  {v.text}
+                  {t(v.text)}
                 </p>
               </div>
             </Reveal>
