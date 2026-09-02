@@ -162,14 +162,11 @@ const LocaleContext = createContext<Ctx>({ locale: "pt", setLocale: () => {}, t:
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>("pt");
 
+  // Português é o idioma institucional padrão; só uma escolha explícita do
+  // usuário (persistida) muda o idioma.
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY) as Locale | null;
-    if (stored && LOCALES.some((l) => l.code === stored)) {
-      setLocaleState(stored);
-      return;
-    }
-    const nav = window.navigator.language.slice(0, 2).toLowerCase();
-    if (nav === "en" || nav === "es") setLocaleState(nav);
+    if (stored && LOCALES.some((l) => l.code === stored)) setLocaleState(stored);
   }, []);
 
   useEffect(() => {
