@@ -78,6 +78,14 @@ function Hero() {
       <div className="blueprint absolute inset-0 opacity-60" aria-hidden="true" />
 
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 pt-44 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-10"
+        >
+          <BrandLogo priority halo width={280} height={86} imgClassName="h-20 md:h-24" />
+        </motion.div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
           <Eyebrow>Estruturação financeira desde 2011</Eyebrow>
         </motion.div>
