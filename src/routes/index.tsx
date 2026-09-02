@@ -84,7 +84,7 @@ function Hero() {
           transition={{ delay: 0.05, duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="mb-10"
         >
-          <BrandLogo priority halo width={280} height={86} imgClassName="h-20 md:h-24" />
+          <BrandLogo priority highlight width={280} height={86} imgClassName="h-20 md:h-24" />
         </motion.div>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }}>
           <Eyebrow>Estruturação financeira desde 2011</Eyebrow>
