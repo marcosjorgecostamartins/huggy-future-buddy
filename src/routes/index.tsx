@@ -192,32 +192,9 @@ function Home() {
         </div>
       </section>
 
-      <Section tone="forest">
-        <div className="grid gap-16 lg:grid-cols-[1.4fr_1fr] lg:items-end">
-          <div>
-            <Eyebrow>Ecossistema</Eyebrow>
-            <p className="mt-10 max-w-3xl font-display text-3xl leading-[1.25] md:text-[2.6rem]">
-              A Assessmoney integra a Ostun como uma de suas Member Companies, combinando sua experiência no
-              mercado brasileiro a um ecossistema mais amplo de soluções financeiras, investimentos e advisory.
-            </p>
-          </div>
-          <div className="flex flex-col items-start gap-8">
-            <img src={logoWhite.url} alt="Assessmoney" width={140} height={44} loading="lazy" className="h-12 w-auto" />
-            <a
-              href={CONTACT.ostun}
-              target="_blank"
-              rel="noreferrer noopener"
-              className="border border-champagne/50 px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-champagne transition-colors hover:bg-champagne/10"
-            >
-              Member Company of Ostun ↗
-            </a>
-          </div>
-        </div>
-      </Section>
+      <EcosystemTriad />
 
-      <div className="bg-graphite text-cream">
-        <Marquee label="Instituições e parceiros" />
-      </div>
+      <PartnerLogos />
 
       <CTASection
         title="Sua operação exige uma estrutura sob medida."
