@@ -59,6 +59,19 @@ function Contato() {
                 </dd>
               </div>
               <div>
+                <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">{t("WhatsApp")}</dt>
+                <dd className="mt-2">
+                  <a
+                    href={CONTACT.whatsappHref}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="nav-underline text-graphite"
+                  >
+                    {CONTACT.whatsapp}
+                  </a>
+                </dd>
+              </div>
+              <div>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">{t("Telefone")}</dt>
                 <dd className="mt-2">
                   <a href={`tel:${CONTACT.phone.replace(/\D/g, "")}`} className="nav-underline text-graphite">
@@ -66,6 +79,7 @@ function Contato() {
                   </a>
                 </dd>
               </div>
+
               <div>
                 <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-emerald-action">{t("Endereço")}</dt>
                 <dd className="mt-2 max-w-xs leading-relaxed text-muted-foreground">{CONTACT.address}</dd>

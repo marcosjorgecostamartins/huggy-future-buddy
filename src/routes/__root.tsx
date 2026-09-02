@@ -18,6 +18,8 @@ import { BrandLoader } from "@/components/site/BrandLoader";
 import { Cursor } from "@/components/site/Cursor";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { WhatsAppFab } from "@/components/site/WhatsAppFab";
+
 import { Toaster } from "@/components/ui/sonner";
 import { LOCALES, LocaleProvider } from "@/lib/i18n";
 import { getStoredLocale } from "@/lib/locale.functions";
@@ -195,7 +197,9 @@ function RootComponent() {
           </div>
         </AnimatePresence>
         <Footer />
+        <WhatsAppFab />
         <Toaster position="bottom-right" />
+
       </LocaleProvider>
     </QueryClientProvider>
   );

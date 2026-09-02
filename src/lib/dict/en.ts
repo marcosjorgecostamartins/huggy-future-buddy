@@ -450,6 +450,7 @@ export const EN: Record<string, string> = {
   "Empresa / Instituição": "Company / Institution",
   "E-mail": "Email",
   Telefone: "Phone",
+  "Falar no WhatsApp": "Chat on WhatsApp",
   "Perfil de investidor": "Investor profile",
   "Interesse e ticket médio": "Interest and average ticket",
   "Enviar cadastro": "Submit registration",
