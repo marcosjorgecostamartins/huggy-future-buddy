@@ -3,6 +3,9 @@ export const CONTACT = {
   city: "Bela Vista, São Paulo — SP",
   phone: "+55 (11) 2847-4930",
   phoneHref: "tel:+551128474930",
+  whatsapp: "+55 11 99169-8491",
+  whatsappHref: "https://wa.me/5511991698491",
+
   email: "contato@assessmoney.com.br",
   instagram: "https://instagram.com/assessmoney",
   linkedin: "https://www.linkedin.com/company/assessmoney",
