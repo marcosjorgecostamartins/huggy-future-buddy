@@ -203,11 +203,11 @@
 /* Keep each mobile marquee slow enough to read before it leaves the viewport. */
 @media (max-width: 767px) {
   .marquee-market {
-    --marquee-duration: 180s;
+    --marquee-duration: 70s;
   }
 
   .marquee-partners {
-    --marquee-duration: 240s;
+    --marquee-duration: 90s;
   }
 }
 
