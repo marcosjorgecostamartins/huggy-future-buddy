@@ -200,10 +200,14 @@
   animation: marquee var(--marquee-duration, 42s) linear infinite;
 }
 
-/* Slower, calmer scroll on small screens */
+/* Keep each mobile marquee slow enough to read before it leaves the viewport. */
 @media (max-width: 767px) {
-  .marquee-track {
-    --marquee-duration: 80s;
+  .marquee-market {
+    --marquee-duration: 120s;
+  }
+
+  .marquee-partners {
+    --marquee-duration: 180s;
   }
 }
 

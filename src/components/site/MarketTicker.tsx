@@ -92,7 +92,7 @@ export function MarketTicker() {
         </p>
         <div className="relative flex-1 overflow-hidden py-3">
           {quotes ? (
-            <div className="marquee-track flex w-max gap-10 pr-10">
+            <div className="marquee-track marquee-market flex w-max gap-10 pr-10">
               {items.map((q, i) => (
                 <span key={`${q.code}-${i}`} className="flex items-baseline gap-2 whitespace-nowrap font-mono text-[12px]">
                   <span className="text-cream/55 uppercase tracking-[0.14em]">{q.code}</span>
