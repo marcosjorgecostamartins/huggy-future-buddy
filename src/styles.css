@@ -197,8 +197,16 @@
 }
 
 @utility marquee-track {
-  animation: marquee 42s linear infinite;
+  animation: marquee var(--marquee-duration, 42s) linear infinite;
 }
+
+/* Slower, calmer scroll on small screens */
+@media (max-width: 767px) {
+  .marquee-track {
+    --marquee-duration: 80s;
+  }
+}
+
 
 @keyframes marquee {
   from {
