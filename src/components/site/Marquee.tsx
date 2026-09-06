@@ -13,7 +13,7 @@ export function Marquee({ label }: { label?: string }) {
           {t(label)}
         </p>
       ) : null}
-      <div className="flex w-max marquee-track items-center gap-6 pr-6">
+      <div className="marquee-track marquee-partners flex w-max items-center gap-6 pr-6">
         {items.map((partner, i) => (
           <span
             key={`${partner.name}-${i}`}
