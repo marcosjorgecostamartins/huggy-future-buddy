@@ -197,20 +197,8 @@
 }
 
 @utility marquee-track {
-  animation: marquee var(--marquee-duration, 42s) linear infinite;
+  animation: marquee 42s linear infinite;
 }
-
-/* Keep each mobile marquee slow enough to read before it leaves the viewport. */
-@media (max-width: 767px) {
-  .marquee-market {
-    --marquee-duration: 70s;
-  }
-
-  .marquee-partners {
-    --marquee-duration: 90s;
-  }
-}
-
 
 @keyframes marquee {
   from {
@@ -223,11 +211,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   * {
+    animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
-  }
-
-  .marquee-track {
-    animation: none !important;
-    transform: none !important;
   }
 }
