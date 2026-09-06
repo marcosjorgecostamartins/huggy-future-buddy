@@ -203,11 +203,11 @@
 /* Keep each mobile marquee slow enough to read before it leaves the viewport. */
 @media (max-width: 767px) {
   .marquee-market {
-    --marquee-duration: 120s;
+    --marquee-duration: 180s;
   }
 
   .marquee-partners {
-    --marquee-duration: 180s;
+    --marquee-duration: 240s;
   }
 }
 
@@ -223,7 +223,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   * {
-    animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
   }
 }
