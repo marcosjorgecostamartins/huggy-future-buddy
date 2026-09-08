@@ -1,1 +1,0 @@
-import{H as e}from"./i18n-CmLWAodD.js";import{i as t,r as n}from"./index-CnMD42MT.js";import{t as r}from"./DetailPageView-BCGAd-K1.js";var i=e();function a(){let{page:e}=n.useLoaderData();return(0,i.jsx)(r,{page:e,siblings:t.filter(t=>t.slug!==e.slug),basePath:`/legal-assets`,siblingsLabel:`Outros ativos`})}export{a as component};
