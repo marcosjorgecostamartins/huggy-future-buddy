@@ -1,1 +1,0 @@
-import{H as e}from"./i18n-CmLWAodD.js";import{o as t,t as n}from"./index-CtYFfHPG.js";import{t as r}from"./DetailPageView-BCGAd-K1.js";var i=e();function a(){let{page:e}=n.useLoaderData();return(0,i.jsx)(r,{page:e,siblings:t.filter(t=>t.slug!==e.slug),basePath:`/solucoes`,siblingsLabel:`Outras soluções`})}export{a as component};

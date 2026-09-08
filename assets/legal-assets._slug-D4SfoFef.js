@@ -1,0 +1,1 @@
+import{H as e}from"./utils-CrTLHpRF.js";import{i as t,r as n}from"./index-ifZhqHGq.js";import{t as r}from"./DetailPageView-DDGwVDQH.js";var i=e();function a(){let{page:e}=n.useLoaderData();return(0,i.jsx)(r,{page:e,siblings:t.filter(t=>t.slug!==e.slug),basePath:`/legal-assets`,siblingsLabel:`Outros ativos`})}export{a as component};
