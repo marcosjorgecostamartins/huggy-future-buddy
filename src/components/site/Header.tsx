@@ -33,13 +33,19 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-8 px-6 lg:px-12">
-        <Link to="/" className="flex items-center gap-3" aria-label={t("Assessmoney — início")}>
-          <BrandLogo
-            priority
-            width={168}
-            height={52}
-            imgClassName={cn("transition-all duration-500", scrolled ? "h-11" : "h-14")}
-          />
+        <Link
+          to="/"
+          className="flex items-center gap-3"
+          aria-label={t("Assessmoney — início")}
+        >
+          <span
+            className={cn(
+              "font-display text-cream transition-all duration-500",
+              scrolled ? "text-xl" : "text-2xl",
+            )}
+          >
+            Assessmoney
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 xl:flex" aria-label={t("Navegação principal")}>
