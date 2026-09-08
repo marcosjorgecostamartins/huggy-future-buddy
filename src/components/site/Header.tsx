@@ -38,14 +38,17 @@ export function Header() {
           className="flex items-center gap-3"
           aria-label={t("Assessmoney — início")}
         >
-          <span
-            className={cn(
-              "font-display text-cream transition-all duration-500",
-              scrolled ? "text-xl" : "text-2xl",
+          <BrandLogo
+            variant="white"
+            width={scrolled ? 140 : 168}
+            height={scrolled ? 40 : 48}
+            priority
+            highlight={false}
+            imgClassName={cn(
+              "transition-all duration-500",
+              scrolled ? "h-9" : "h-11",
             )}
-          >
-            Assessmoney
-          </span>
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 xl:flex" aria-label={t("Navegação principal")}>
