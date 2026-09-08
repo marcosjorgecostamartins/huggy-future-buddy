@@ -2,7 +2,6 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
-import { BrandLogo } from "./BrandLogo";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
 import { NAV } from "@/lib/site";
@@ -38,17 +37,14 @@ export function Header() {
           className="flex items-center gap-3"
           aria-label={t("Assessmoney — início")}
         >
-          <BrandLogo
-            variant="white"
-            width={scrolled ? 140 : 168}
-            height={scrolled ? 40 : 48}
-            priority
-            highlight={false}
-            imgClassName={cn(
-              "transition-all duration-500",
-              scrolled ? "h-9" : "h-11",
+          <span
+            className={cn(
+              "font-display text-cream transition-all duration-500",
+              scrolled ? "text-xl" : "text-2xl",
             )}
-          />
+          >
+            Assessmoney
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-8 xl:flex" aria-label={t("Navegação principal")}>
