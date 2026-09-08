@@ -1,1 +1,0 @@
-import{H as e}from"./utils-CrTLHpRF.js";import{a as t,n}from"./index-ifZhqHGq.js";import{t as r}from"./DetailPageView-DDGwVDQH.js";var i=e();function a(){let{page:e}=n.useLoaderData();return(0,i.jsx)(r,{page:e,siblings:t.filter(t=>t.slug!==e.slug),basePath:`/ma`,siblingsLabel:`Outras frentes`})}export{a as component};
